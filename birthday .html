@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mobile-Friendly Love Story Slideshow</title>
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
+  html, body {
+    height: 100%;
+    font-family: 'Quicksand', 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #fff0f5, #ffe6f2);
+    color: #5a2a3a;
+    overflow: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100vh;
+  }
+
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 80vh;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(168,59,102,0.15);
+    overflow: hidden;
+    display: flex;
+  }
+
+  .slides {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+
+  .slide {
+    flex: 0 0 100%;
+    padding: 30px 40px;
+    overflow-y: auto;
+    border-radius: 20px;
+    background: #fff0f5;
+    box-shadow: 0 8px 24px rgba(168,59,102,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .slide:focus {
+    outline: none;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  h1, h2 {
+    color: #a83b66;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  h1 {
+    font-size: 2.4rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #6e3e55;
+  }
+
+  img.photo {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 18px;
+    border: 3px solid #ffc0cb80;
+    box-shadow: 0 8px 24px rgba(168,59,102,0.25);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  img.photo:hover,
+  img.photo:focus {
+    transform: scale(1.05);
+    box-shadow: 0 12px 36px rgba(168,59,102,0.45);
+    outline: none;
+  }
+
+  .promise {
+    background: #ffe6f2;
+    border-left: 5px solid #a83b66;
+    padding: 20px 25px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: #a83b66;
+  }
+
+  /* Navigation buttons */
+  .buttons {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    background: linear-gradient(45deg, #d88ea6, #b75b7d);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(216,142,166,0.6);
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  button:disabled {
+    background: #f9d7e0;
+    color: #a88399;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .slide {
+      padding: 20px 20px;
+    }
+    h1 {
+      font-size: 1.8rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    img.photo {
+      max-height: 180px;
+    }
+    button {
+      padding: 10px 24px;
+      font-size: 0.9rem;
+    }
+  }
+  .heart-animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  color: red;
+  opacity: 0.7;
+  animation: floatHeart 8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-100px, -300px) scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100px, -600px) scale(0.8);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+	<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart-animation";
+    heart.textContent = "";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = Math.random() * 100 + "vh";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 8000);
+  }
+
+  setInterval(createHeart, 500);
+</script>
+  <main class="slideshow-container" role="main" aria-label="Love story slideshow">
+    <div class="slides" id="slides">
+
+      <section class="slide" tabindex="0" aria-label="Page 1: First Sight">
+        <div class="content-wrapper">
+          <h1>To My Karina </h1>
+          <p>From the moment I first saw you, I knew you were the most beautiful girl in the world.</p>
+          <p>I was scared you might not like me, but my heart was already yours.</p>
+          <p>I asked Jhavi Sir to introduce everyone in class just to know your name.</p>
+          
+        </div>
+      </section>
+
+      <section class="slide" tabindex="0" aria-label="Page 2: First Message">
+        <div class="content-wrapper">
+          <h2>Your First Message</h2>
+          <p>Your first message was just <strong>hi</strong>, simple but so special.</p>
+          <p>It became one of the most meaningful moments of my life.</p>
+        
+        </div>
+      </section>
+
+      <section class="slide" tabindex="0" aria-label="Page 3: Proposal Day">
+        <div class="content-wrapper">
+          <h2>November 19, 2024</h2>
+          <p>That day I proposed to you, and you said yes — the happiest moment of my life.</p>
+          <p>We began our forever together.</p>
+          
+        </div>
+      </section>
+
+      <section class="slide" tabindex="0" aria-label="Page 4: Our Memories">
+        <div class="content-wrapper">
+          <h2>Our Favorite Memories</h2>
+          <p>From riverside talks to hiding under benches holding hands, every moment with you is precious.</p>
+          <div style="display:flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <img src="IMG_20250123_195742_962.jpg" alt="Dance practice photo" class="photo" style="max-width: 45%;" />
+            <img src="IMG_20241220_210307_851.jpg" alt="Ramp walk in Chhetri dress" class="photo" style="max-width: 45%;" />
+            <img src="IMG_20250224_082706.jpg" alt="In class together" class="photo" style="max-width: 45%;" />
+            <img src="FB_IMG_1735652756258.jpg" alt="Us together" class="photo" style="max-width: 45%;" />
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" tabindex="0" aria-label="Page 5: Apology">
+        <div class="content-wrapper">
+          <h2>My Apology</h2>
+          <p>I have made mistakes, some big ones. I don’t know if I deserve forgiveness.</p>
+          <p>But I want you to know my love for you is deeper than ever, and I’m truly sorry.</p>
+        </div>
+      </section>
+
+      <section class="slide" tabindex="0" aria-label="Page 6: Forever Promise">
+        <div class="content-wrapper">
+          <h2>My Forever Promise</h2>
+          <div class="promise" tabindex="0" style="overflow-y:auto; max-height: 40vh;">
+            <p>I promise to love you for the rest of my life.</p>
+            <p>I will fight for you no matter who stands in front of me.</p>
+            <p>I will always respect, support, protect, and provide for you.</p>
+            <p>I will be with you in every situation, through every joy and challenge.</p>
+            <p>I will fulfill every dream and wish you have because your happiness is mine too.</p>
+            <p><strong>You are my everything, Karina. Forever.</strong></p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <nav class="buttons" aria-label="Navigation buttons">
+    <button id="prevBtn" aria-label="Previous slide" disabled> Previous</button>
+    <button id="nextBtn" aria-label="Next slide">Next </button>
+  </nav>
+
+<script>
+  const slides = document.getElementById('slides');
+  const slideCount = slides.children.length;
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let currentIndex = 0;
+
+  function updateButtons() {
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === slideCount - 1;
+  }
+
+  function goToSlide(index) {
+    if(index < 0 || index >= slideCount) return;
+    currentIndex = index;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    updateButtons();
+    slides.children[currentIndex].focus();
+  }
+
+  prevBtn.addEventListener('click', () => {
+    goToSlide(currentIndex - 1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    goToSlide(currentIndex + 1);
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight' && !nextBtn.disabled) {
+      goToSlide(currentIndex + 1);
+    } else if(e.key === 'ArrowLeft' && !prevBtn.disabled) {
+      goToSlide(currentIndex - 1);
+    }
+  });
+
+  // Touch swipe support
+  let startX = 0;
+  let endX = 0;
+  slides.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+  slides.addEventListener('touchmove', e => {
+    endX = e.touches[0].clientX;
+  });
+  slides.addEventListener('touchend', () => {
+    if(startX - endX > 50) { // swipe left
+      goToSlide(currentIndex + 1);
+    } else if(endX - startX > 50) { // swipe right
+      goToSlide(currentIndex - 1);
+    }
+  });
+
+  // Initialize
+  goToSlide(0);
+</script>
+</body>
+</html>
